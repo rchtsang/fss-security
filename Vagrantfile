@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder "./", "/vagrant"
+  config.vm.synced_folder "./", "/home/vagrant/project"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -75,5 +75,8 @@ Vagrant.configure("2") do |config|
   # SHELL
 
   config.vm.provision "shell", path: "scripts/provision.sh"
+
+  # make defaul ssh location the project folder
+  config.ssh.extra_args = ["-t", "cd /home/vagrant/project ; bash --login"]
 
 end
