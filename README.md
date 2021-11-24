@@ -55,7 +55,7 @@ Thoughts:
 - 
 
 ---
-## Core Features
+## Planned Core Features
 
 - Processor Emulation:
 	- built around qemu dynamic translation? (that's what renode does)
