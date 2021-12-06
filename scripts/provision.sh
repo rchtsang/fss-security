@@ -20,6 +20,8 @@ APT_INSTALL_PACKAGES=(
 	openssl
 	valgrind
 	python3-pip
+	doxygen
+	graphviz
 )
 
 PIP_INSTALL_PACKAGES=(
@@ -94,16 +96,20 @@ mkdir $SYSTEMC_DIR && \
 	rm "systemc.tar.gz"
 
 # compile and install systemc
-echo "compiling and building systemc..."
-cd $SYSTEMC_DIR
-mkdir build && cd build
-export CXX=clang++
-sudo ../configure --with-unix-layout --prefix="/usr/"
-sudo make
-sudo make check
-sudo make install
-cd -
-echo "finished installing systemc!"
+if [ "$(ls -A $SYSTEMC_DIR)" ]; then
+	echo "compiling and building systemc..."
+	cd $SYSTEMC_DIR
+	mkdir build && cd build
+	export CXX=clang++
+	sudo ../configure --with-unix-layout --prefix="/usr/"
+	sudo make
+	sudo make check
+	sudo make install
+	cd -
+	echo "finished installing systemc!"
+else
+	echo -e "\n\n\nerror! ${SYSTEMC_DIR} empty!\n\n\n"
+fi
 
 # install arm-non-eabi ARM Embedded Toolchain
 echo "downloading gcc-arm-none-eabi..."
