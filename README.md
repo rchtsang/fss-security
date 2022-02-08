@@ -2,6 +2,8 @@
 
 Heavily inspired by Renode, Logism, and SimSoC
 
+# [Abandoned]
+
 ---
 ## Topics
 
